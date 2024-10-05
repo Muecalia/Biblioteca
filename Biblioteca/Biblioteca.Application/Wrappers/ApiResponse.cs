@@ -7,6 +7,8 @@ namespace Biblioteca.Application.Wrappers
         public string Message { get; set; } = string.Empty;
         public T Data { get; set; }
 
+        public ApiResponse() { }
+
         public ApiResponse(T data, string message)
         {
             Data = data;
@@ -20,5 +22,9 @@ namespace Biblioteca.Application.Wrappers
             Message = message;
         }
 
+        public static ApiResponse<T> Error(string message) => new (message);
+
+        public static ApiResponse<T> Success(T data, string message) => new(data, message);
+        
     }
 }

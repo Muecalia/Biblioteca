@@ -10,6 +10,5 @@ namespace Biblioteca.Core.Entities
         [MaxLength(100)]
         public string Message { get; set; }
         public bool IsRead { get; set; }
-        public DateTime? ReturnDate { get; set; }
     }
 }

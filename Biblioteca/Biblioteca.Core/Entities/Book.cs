@@ -20,7 +20,6 @@ namespace Biblioteca.Core.Entities
         public int YearPublication { get; set; }
         [MaxLength(500)]
         public string? Summary { get; set; }
-        public int QuantityBooks { get; set; }
         public List<LoanBooks> Loans { get; set; }
         public List<AuthorBooks> Authors { get; set; }
     }

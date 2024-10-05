@@ -11,18 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Author\" />
-    <Folder Include="Handlers\Book\" />
-    <Folder Include="Handlers\Customer\" />
-    <Folder Include="Handlers\Loan\" />
-    <Folder Include="Handlers\Notification\" />
-    <Folder Include="Handlers\User\" />
-    <Folder Include="Queries\User\" />
-    <Folder Include="IServices\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
