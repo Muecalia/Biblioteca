@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Biblioteca.Application.Queries.Response.Loan;
+using Biblioteca.Application.Wrappers;
+using MediatR;
 
 namespace Biblioteca.Application.Queries.Request.Loan
 {
-    public class FindLoanRequest
+    public class FindLoanRequest : IRequest<ApiResponse<FindLoanResponse>>
     {
+        public int Id { get; set; } = 0;
     }
 }

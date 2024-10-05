@@ -12,6 +12,6 @@ namespace Biblioteca.Application.Commands.Request.Book
         public string ISBN { get; set; } = string.Empty;
         public int YearPublication { get; set; } = 2000;
         public string Summary { get; set; } = string.Empty;
-        public List<int> IdAuthors { get; set; } = [];
+        //public List<int> IdAuthors { get; set; } = [];
     }
 }

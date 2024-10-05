@@ -6,11 +6,12 @@
         Pending = 1,
         //Emprestado
         Borrowed = 2,
-        //Disponível
-        Available = 3,
+        //Devolvido
+        Returned = 3,
         //Cancelado
         Canceled = 4,
         //Suspendido
         Suspended = 5
     }
+
 }

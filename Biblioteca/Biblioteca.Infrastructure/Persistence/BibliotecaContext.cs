@@ -1,20 +1,24 @@
 ﻿using Biblioteca.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biblioteca.Infrastructure.Persistence
 {
-    public class BibliotecaContext : DbContext
+    //public class BibliotecaContext : DbContext
+    public class BibliotecaContext : IdentityDbContext<User>
     {
         public BibliotecaContext(DbContextOptions<BibliotecaContext> options) : base(options) { }
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorBooks> AuthorBooks { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        //public DbSet<Customer> Customers { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<LoanBooks> LoanBooks { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        //public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -59,30 +63,18 @@ namespace Biblioteca.Infrastructure.Persistence
                     .HasForeignKey(b => b.IdBook)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-            
-            builder.Entity<Customer>(e =>
-            {
-                e.HasKey(c => c.Id);
-
-                e.HasIndex(c => c.Name);
-
-                e.HasMany(c => c.Loans)
-                    .WithOne(c => c.Customer)
-                    .HasForeignKey(c => c.IdCustomer)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
 
             builder.Entity<Loan>(e =>
             {
                 e.HasKey(l => l.Id);
 
-                e.HasIndex(l => l.IdUser);
-                e.HasIndex(l => l.IdCustomer);
+                //e.HasIndex(l => l.IdEmployee);
+                //e.HasIndex(l => l.IdCustomer);
 
-                e.HasOne(l => l.User)
-                    .WithMany(l => l.Loans)
-                    .HasForeignKey(l => l.IdUser)
-                    .OnDelete(DeleteBehavior.Restrict);
+                //e.HasOne(l => l.Employee)
+                //    .WithMany(l => l.Loans)
+                //    .HasForeignKey(l => l.IdEmployee)
+                //    .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(l => l.Customer)
                     .WithMany(l => l.Loans)
@@ -111,18 +103,31 @@ namespace Biblioteca.Infrastructure.Persistence
             {
                 e.HasKey(u => u.Id);
             });
-            
-            builder.Entity<Users>(e =>
+
+            builder.Entity<Stock>(e => 
             {
-                e.HasKey(u => u.Id);
+                e.HasKey(s => s.Id);
 
-                e.HasIndex(u => u.Name);
-
-                e.HasMany(u => u.Loans)
-                    .WithOne(u => u.User)
-                    .HasForeignKey(c => c.IdUser)
-                    .OnDelete(DeleteBehavior.Restrict);
+                //e.HasOne(s => s.Book)
+                //    .WithOne(b => b.)
             });
+
+            //builder.Entity<User>(e =>
+            //{
+            //    //e.HasKey(u => u.Id);
+
+            //    e.HasIndex(u => u.Name);
+
+            //    //e.HasMany(u => u.Loans)
+            //    //    .WithOne(u => u.Customer)
+            //    //    .HasForeignKey(c => c.IdCustomer)
+            //    //    .OnDelete(DeleteBehavior.Restrict);
+
+            //    //e.HasMany(u => u.Loans)
+            //    //    .WithOne(u => u.Employee)
+            //    //    .HasForeignKey(c => c.IdEmployee)
+            //    //    .OnDelete(DeleteBehavior.Restrict);
+            //});
 
             base.OnModelCreating(builder);
         }

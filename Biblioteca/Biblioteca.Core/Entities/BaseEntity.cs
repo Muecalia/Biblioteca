@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Biblioteca.Core.Entities
+﻿namespace Biblioteca.Core.Entities
 {
     public class BaseEntity
     {
-        protected BaseEntity() 
+        protected BaseEntity()
         {
             IsDeleted = false;
             CreatedAt = DateTime.Now;
