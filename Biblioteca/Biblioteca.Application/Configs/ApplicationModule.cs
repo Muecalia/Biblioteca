@@ -1,4 +1,7 @@
-﻿using Biblioteca.Application.Handlers.Authors;
+﻿using Biblioteca.Application.Commands.Request.Author;
+using Biblioteca.Application.Handlers.Authors;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca.Application.Configs
@@ -9,7 +12,8 @@ namespace Biblioteca.Application.Configs
         {
             services
                 .AddServices()
-                .AddHandlers();
+                .AddHandlers()
+                .AddValidation();
             return services;
         }
 
@@ -25,6 +29,14 @@ namespace Biblioteca.Application.Configs
         {
             services.AddMediatR(config =>
             config.RegisterServicesFromAssemblyContaining<CreateAuthorHandler>());
+
+            return services;
+        }
+
+        private static IServiceCollection AddValidation(this IServiceCollection services) 
+        {
+            services.AddFluentValidationAutoValidation()
+                .AddValidatorsFromAssemblyContaining<CreateAuthorRequest>();
 
             return services;
         }
