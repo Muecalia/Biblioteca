@@ -27,10 +27,10 @@ namespace Biblioteca.Application.Handlers.Books
                 if (await _iBookRepository.IsExists(request.Title, cancellationToken))
                     return ApiResponse<InputBookResponse>.Error("Erro! Já existe um livro com este título");
 
-                if (request.IdAuthors.Count <= 0)
-                    return ApiResponse<InputBookResponse>.Error("Erro! Deve inserir pelo menos um autor");
+                //if (request.IdAuthors.Count <= 0)
+                //    return ApiResponse<InputBookResponse>.Error("Erro! Deve inserir pelo menos um autor");
 
-                Console.WriteLine(request.IdAuthors.Count);
+                //Console.WriteLine(request.IdAuthors.Count);
 
                 var autores = new List<AuthorBooks>();
 

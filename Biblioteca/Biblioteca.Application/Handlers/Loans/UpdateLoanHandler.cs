@@ -63,7 +63,7 @@ namespace Biblioteca.Application.Handlers.Loans
                     ReturnDate = loan.ReturnDate.Value.ToShortDateString()
                 };
 
-                return ApiResponse<UpdateLoanResponse>.Success(result, "Emprestimo de livro(s) realizado com sucesso");
+                return ApiResponse<UpdateLoanResponse>.Success(result, "Devolução de livro(s) realizado com sucesso");
             }
             catch (Exception ex)
             {
